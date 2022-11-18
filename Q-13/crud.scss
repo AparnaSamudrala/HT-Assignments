@@ -1,0 +1,155 @@
+
+/* 
+	Used var for all colors
+	Used string interpolation
+	Used mixins
+	Used extend
+	Used function for property multiplication( like .5rem -> 1rem)
+	Used nesting
+*/
+$color_1: #155724;
+$color_2: #0c5460;
+$color_3: #721c24;
+$color_4: #fff;
+$color_5: #212529;
+
+$background-color_1: lightcyan;
+$background-color_2: #d4edda;
+$background-color_3: #d1ecf1;
+$background-color_4: #f8d7da;
+$background-color_5: green;
+$background-color_6: transparent;
+$background-color_7: #007bff;
+$background-color_8: #dc3545;
+
+$border-color_1: #c3e6cb;
+$border-color_2: #bee5eb;
+$border-color_3: #f5c6cb;
+$border-color_4: #007bff;
+$border-color_5: #dc3545;
+$border-color_6: #333;
+
+$b:"border";
+$bg: "background-color";
+
+@mixin border-prop($bw:1px,$bc:$background-color_6,$br:.25rem){
+	#{$b}: $bw solid $bc;
+	#{$b}-radius: $br;
+}
+
+%spacing{
+	     margin-bottom: 1rem;
+	}
+
+@function mulUnit($size,$val,$unit){
+	@return ($size*$val)+$unit;
+}
+
+.container {
+	#{$bg}: $background-color_1;
+	padding: 1.5rem;
+}
+.alert {
+	position: relative;
+	padding: 0.75rem 1.25rem;
+	@extend %spacing;
+	@include border-prop();
+}
+.btn {
+	display: inline-block;
+	font: {
+		weight: 400;
+		size: .8rem;
+	}
+	color: $color_5;
+	text:{
+		align: center;
+		decoration: none;
+	}
+	vertical-align: middle;
+	#{$bg}: $background-color_6;
+	padding: 0.375rem 0.75rem;
+	line-height: 1.5;
+	@include border-prop();
+}
+.alert-success {
+	color: $color_1;
+	#{$bg}: $background-color_2;
+	#{$b}-color: $border-color_1;
+}
+.alert-info {
+	color: $color_2;
+	#{$bg}: $background-color_3;
+	#{$b}-color: $border-color_2;
+}
+.alert-danger {
+	color: $color_3;
+	#{$bg}: $background-color_4;
+	#{$b}-color: $border-color_3;
+}
+.form-group {
+	label {
+		margin-bottom: .5rem;
+	}
+	input {
+		margin-bottom: .5rem;
+	}
+	display: flex;
+	flex-direction: column;
+	padding-bottom: mulUnit(.5,2,rem);
+}
+.btn.btn-success {
+	#{$bg}: $background-color_5;
+	color: $color_4;
+	padding: .5rem 2rem;
+	#{$b}: none;
+	#{$b}-radius: .5rem;
+}
+
+.btn-primary {
+	color: $color_4;
+	#{$bg}: $background-color_7;
+	#{$b}-color: $border-color_4;
+}
+.btn-danger {
+	color: $color_4;
+	#{$bg}: $background-color_8;
+	#{$b}-color: $border-color_5;
+}
+.table {
+	width: 100%;
+	margin-bottom: mulUnit(.5,2,rem);
+	color: $color_5;
+	#{$b}-collapse: collapse;
+	thead {
+		th {
+			vertical-align: bottom;
+			#{$b}-bottom: 2px solid $border-color_6;
+			text-align: left;
+		}
+	}
+	td,th {
+		padding: 0.75rem;
+		vertical-align: top;
+	}
+	
+}
+.table-#{$b}ed {
+	thead {
+		td,th {
+			#{$b}-bottom-width: 2px;
+		}
+		
+	}
+	td,th {
+		#{$b}: 1px solid $border-color_6;
+	}
+	
+}
+
+.mr-1 {
+	margin-right: mulUnit(.5,2,rem);
+}
+input {
+	padding: 0.5rem;
+}

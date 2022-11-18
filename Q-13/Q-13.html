@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SASS Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- original scss file -->
+    <link rel="stylesheet" href="crud.scss" />
+    <!-- compiled version -->
+    <style>
+      .container {
+        background-color: lightcyan;
+        padding: 1.5rem;
+        border: 30px solid darkcyan;
+      }
+
+      .alert {
+        position: relative;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+      }
+
+      .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+
+      .alert-info {
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+      }
+
+      .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+
+      .form-group label,
+      .form-group input {
+        margin-bottom: .5rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+      }
+
+      .btn.btn-success {
+        background-color: green;
+        color: #fff;
+        padding: .5rem 2rem;
+        border: none;
+        border-radius: .5rem;
+      }
+
+      .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+      }
+
+      .table-bordered thead td,
+      .table-bordered thead th {
+        border-bottom-width: 2px;
+      }
+
+      .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #333;
+        text-align: left;
+      }
+
+      .table-bordered td,
+      .table-bordered th {
+        border: 1px solid #333;
+      }
+
+      .table td,
+      .table th {
+        padding: 0.75rem;
+        vertical-align: top;
+      }
+
+      .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: .8rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        text-decoration: none;
+		cursor: pointer;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+
+      .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+      }
+
+      .mr-1 {
+        margin-right: 1rem;
+      }
+
+      input {
+        padding: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>User Data Form (using SCSS)</h2>
+      <div class="main">
+        <form action="" id="user-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+          </div>
+          <button type="submit" class="btn btn-success add-btn">Save</button>
+          <br />
+          <br />
+          <div class="">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="user-list">
+                <tr>
+                  <td>Peter</td>
+                  <td>Peter@gmail.com</td>
+                  <td>
+                    <a href="#" class="btn btn-primary mr-1 edit">Edit</a>
+                    <a href="#" class="btn btn-danger delete">Delete</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mary</td>
+                  <td>john@gmail.com</td>
+                  <td>
+                    <a href="#" class="btn btn-primary mr-1 edit">Edit</a>
+                    <a href="#" class="btn btn-danger delete">Delete</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Steve</td>
+                  <td>Steve@gmail.com</td>
+                  <td>
+                    <a href="#" class="btn btn-primary mr-1 edit">Edit</a>
+                    <a href="#" class="btn btn-danger delete">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      var selectedRow = null;
+      /*Alert messages to show when record added, edited and deleted*/
+      function showAlert(message, className) {
+        const div = document.createElement("div");
+        div.className = `alert alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+        const container = document.querySelector('.container');
+        const main = document.querySelector('.main');
+        container.insertBefore(div, main);
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+      }
+      /*Reset all form fields*/
+      function clearFields() {
+        document.querySelector('#name').value = "";
+        document.querySelector('#email').value = "";
+      }
+      /*Saving the enetered form fields into table and also if user edits save them too*/
+      document.querySelector('#user-form').addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.querySelector('#name').value;
+        const email = document.querySelector('#email').value;
+        if (name == "" || email == "") {
+          showAlert("Please fill all the input elements", "danger");
+        } else {
+          if (selectedRow == null) {
+            const list = document.querySelector('#user-list');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            	
+							<td>${name}</td>
+							<td>${email}</td>
+							<td>
+								<a href="#" class="btn btn-primary mr-1 edit">Edit</a>
+								<a href="#" class="btn btn-danger delete">Delete</a>
+							</td>`;
+            list.appendChild(row);
+            selectedRow = null;
+            showAlert("Record added successfully!!", "success");
+          } else {
+            selectedRow.children[0].textContent = name;
+            selectedRow.children[1].textContent = email;
+            selectedRow = null;
+            showAlert("Record Info Edited successfully!!", "info");
+            clearFields();
+          }
+        }
+      });
+      /*Edit logic here*/
+      document.querySelector('#user-list').addEventListener("click", (e) => {
+        //e.preventDefault();
+        target = e.target;
+        if (target.classList.contains("edit")) {
+          selectedRow = target.parentElement.parentElement;
+          document.querySelector('#name').value = selectedRow.children[0].textContent;
+          document.querySelector('#email').value = selectedRow.children[1].textContent;
+        }
+      });
+      /* Delete Logic here*/
+      document.querySelector('#user-list').addEventListener("click", (e) => {
+        //e.preventDefault();
+        target = e.target;
+        if (target.classList.contains("delete")) {
+          target.parentElement.parentElement.remove();
+          showAlert("Record Deleted successfully!!", "danger");
+        }
+      });
+    </script>
+  </body>
+</html>
