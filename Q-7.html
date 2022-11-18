@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WayFar Website Layout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Georgia', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: #34495e;
+        text-decoration: none;
+      }
+
+      .main-nav {
+        margin-top: 5px;
+      }
+
+      .main-nav a {
+        padding: 10px 15px;
+        text-transform: uppercase;
+        display: flex;
+        color: #eef;
+        font-size: 1rem;
+      }
+
+      .flex-row {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2rem;
+      }
+
+      /* Style the content */
+      article {
+        flex: 1;
+        border-radius: 3px;
+        background-color: #888;
+        border: 2px solid grey;
+        padding: 10px;
+      }
+
+      /* Style the footer */
+      .foot-nav {
+        display: flex;
+        background-color: #852c0c;
+      }
+
+      .foot-nav a {
+        color: #f2f2f2;
+        padding: 14px 3px;
+        text-decoration: none;
+      }
+
+      .foot-nav span {
+        margin: 0 2rem;
+      }
+
+      .page-description {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 1rem;
+        border-bottom: 2px solid;
+      }
+
+      .page-description-left ul {
+        list-style-type: number;
+      }
+
+      .author {
+      	float: right;
+        margin-left: auto;
+      }
+
+      .page-description-left {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 70%;
+        margin-left: 2rem;
+      }
+
+      .page-description-right {
+        border: 1px solid;
+        padding: 0;
+        margin: 0;
+      }
+
+      .page-description-right p {
+        background: red;
+        width: 18rem;
+        height: 2rem;
+        padding-left: 20px;
+        padding-top: 5px;
+        margin: 0;
+      }
+
+      .page-description-right ul {
+        list-style: initial;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 55%;
+      }
+
+      .foot-nav p {
+        margin-right: auto;
+        color: #eef;
+        padding-left: 1rem;
+      }
+
+      .header {
+        padding-top: .5em;
+        padding-bottom: .5em;
+        border: 1px solid #a2a2a2;
+        background-color: #852c0c;
+        -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+      }
+
+      /* ================================= 
+  Media Queries
+==================================== */
+      @media (min-width: 769px) {
+
+        .header,
+        .main-nav {
+          display: flex;
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .header {
+          flex-direction: row;
+          justify-content: space-evenly;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <ul class="main-nav">
+          <li>
+            <a href="#">WayFar</a>
+          </li>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Popular Destinations</a>
+          </li>
+          <li>
+            <a href="#">Tour Packages</a>
+          </li>
+          <li>
+            <a href="#">Offers</a>
+          </li>
+          <li>
+            <a href="#">Enquire Us</a>
+          </li>
+          <li>
+            <a href="#">Gallery</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <div class="main-content">
+        <div>
+          <section class="page-description">
+            <p>
+              <strong>About Us</strong>
+            </p>
+            <p>
+              <strong>WayFar - Making moments to memories</strong>
+            </p>
+            <p>At the heart of everything we do at WayFar, is add magic to our customers' trips. We do this by offering them over 500unforgettable experiences like staying in a floating cottage,dining in houseboats and many more.Be it in India or abroad, each of our trip has something unique for families to love together, laugh together and grow together. </p>
+          </section>
+          <section class="page-description">
+            <p>
+              <strong>Trip Testimonials</strong>
+            </p>
+            <p>For travellers who want to explore the world at thier own pace and space,WayFar is the right choice. With handy packages and awesome destinations,this is the best, one can get <span class="author">- Adam and Eve</span>
+            </p>
+            <p>We had the most remarkable family tour with WayFar. The guides truly took care of us, and did their best to make this trip more memorable </p>
+            <span class="author">- John and Cindy</span>
+          </section>
+          <section class="flex-row">
+            <div class="page-description-left">
+              <p>
+                <strong>Awards</strong>
+              </p>
+              <ul>
+                <li>WayFar is rated India's Most Popular Resort Chain by the Times Travel Award, 2020.</li>
+                <li>WayFar is voted India's Favorite Resort Chain by Vacation IQ, 2018.</li>
+                <li>Bestowed with the prestigious Silver Peacock Award for sustainability 2016.</li>
+              </ul>
+            </div>
+            <div>
+              <div class="page-description-right">
+                <p>Know more</p>
+                <ul>
+                  <li>Times Travel Award</li>
+                  <li>Vacation IQ</li>
+                  <li>Silver Peacock Award</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="foot-nav">
+        <p>Copyright &copy; WayFar, 2020 </p>
+        <a href="#">Contact US <span>|</span>
+        </a>
+        <a href="#">Terms and Conditions <span>|</span>
+        </a>
+        <a href="#">About Us</a>
+      </div>
+    </footer>
+  </body>
+</html>

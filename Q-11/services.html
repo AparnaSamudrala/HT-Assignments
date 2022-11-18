@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <!-- Bootstrap ICONS CSS  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .d-flex {
+        display: flex;
+      }
+
+      .justify-content-space-between {
+        justify-content: space-between;
+      }
+
+      .justify-content-center {
+        justify-content: center;
+      }
+
+      .navbar {
+        padding: 0 0 0 5rem;
+        height: 10%;
+        background-color: slateblue;
+        color: #fff;
+      }
+
+      .navbar a.logo {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      .navbar ul li {
+        list-style-type: none;
+        padding: 0 1rem;
+        font-size: .85rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      main {
+        padding: 2rem 5rem;
+      }
+
+      main .image {
+        width: 40%;
+      }
+
+      main .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      main .content {
+        width: 60%;
+        padding-left: 2rem;
+      }
+
+      footer {
+        background-color: slateblue;
+        color: #fff;
+        height: 8vh;
+        font-size: 0.9rem;
+        font-weight: 100;
+      }
+
+      main button {
+        background-color: slateblue;
+        color: #fff;
+        padding: .8rem;
+        border: none;
+      }
+
+      .title {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      .sub-title {
+        font-weight: bold;
+        font-size: .8rem;
+      }
+
+      .thin {
+        font-weight: 400;
+        font-size: .8rem;
+        width: 20rem;
+      }
+
+      .title-desc {
+        font-size: .85rem;
+      }
+
+      li a.active {
+        text-decoration: underline;
+      }
+
+      .card {
+        text-align: center;
+        border: 1px solid #333;
+        padding: 0px 0px 2rem;
+        margin: 1rem;
+      }
+
+      .card img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+      }
+
+      .offer {
+        color: red;
+        margin: 6px;
+        font-weight: 400;
+        font-size: .9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="navbar d-flex justify-content-space-between">
+          <p>
+            <a class="logo" href="home.html">AutoMob-Mechanic</a>
+          </p>
+          <ul class="d-flex">
+            <li>Hi John</li>
+            <span>|</span>
+            <li>
+              <a href="home.html">Home</a>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="services.html" class="active">Services</a>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="reports.html">Reports</a>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="#">Booking</a>
+            </li>
+            <span>|</span>
+            <li>contact@automob.co.in <i class="bi bi-envelope"></i>
+            </li>
+            <span>|</span>
+            <li>999-999-9999 <i class="bi bi-phone"></i>
+              </i>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="#">Logout</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <p class="title">Car Repair and Services</p>
+        <p class="title-desc"> Our Representatives are professionaly trained and skilled with latest and futuristic techniques to provide a best quality service. </p>
+        <p class="title-desc">At Auto-Mob Mechanic, we provide a high class service to the customers for their happy and memorable driving experiernce.</p>
+        <div class="d-flex services"></div>
+        <p class="offer">
+          <strong>**Offer ends in: <span id="timer"></span>
+          </strong>
+        </p>
+      </main>
+      <footer class="d-flex justify-content-center">
+        <p>Copyright &copy; 2020 AutoMob-Mechanic. All Rights Reserved.</p>
+      </footer>
+    </div>
+    <script>
+      let arr = [{
+        title: "Preventive Maintainence Services",
+        imgSrc: "https://www.shutterstock.com/image-photo/car-repair-service-centre-blurred-600w-319114523.jpg",
+        imgTitle: "Periodically check and keep you car running",
+        discount: "20%",
+      }, {
+        title: "Body Repair Services",
+        imgSrc: "https://www.shutterstock.com/image-photo/car-automobile-repair-service-center-600w-1827475757.jpg",
+        imgTitle: "Full chasis body repair provided by the experts",
+        discount: "10%",
+      }, {
+        title: "Car Care Services",
+        imgSrc: "https://e7.pngegg.com/pngimages/784/106/png-clipart-professional-car-repair-team-sincere-service-car-repair.png",
+        imgTitle: "Get your car sparking clean in just minutes",
+        discount: "15%",
+      }];
+      var product = "";
+      arr.map((ele) => {
+        product += `
+						<div class='card'>
+							<p class="sub-title">${ele.title}</p>
+							<img src='${ele.imgSrc}'alt=""/>
+							<p class="thin">${ele.imgTitle}</p>
+							<p>
+								<i>Offer: ${ele.discount}</i>
+							</p>
+							<button>More Details</button>
+						</div>`;
+      });
+      document.querySelector(".services").innerHTML = product;
+
+      function startTimer(duration, display) {
+        var timer = duration,
+          minutes, seconds;
+        setInterval(function() {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+          display.textContent = minutes + ":" + seconds;
+          if (--timer < 0) {
+            timer = duration;
+          }
+        }, 1000);
+      }
+      window.onload = function() {
+        var tenMins = 60 * 10,
+          display = document.querySelector('#timer');
+        startTimer(tenMins, display);
+      };
+    </script>
+  </body>
+</html>

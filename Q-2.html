@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Destiny Tours and Travels Price List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      table {
+        border-collapse: separate;
+        width: 100%;
+        border: 1px solid #888;
+      }
+
+      td,
+      th {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #888;
+      }
+
+      th {
+        text-align: center;
+      }
+
+      td:empty {
+        border: none;
+      }
+
+      @keyframes flash {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: .1;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .flash {
+        color: #f2f;
+        font-weight: bold;
+        -webkit-animation: flash linear 1s infinite;
+        animation: flash linear 1s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th colspan="2"> Cost Per Month</th>
+        <th> Savings </th>
+        <th colspan="2"> Holiday Packages </th>
+      </tr>
+      <tr>
+        <td>January</td>
+        <td>$100</td>
+        <td>$15</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>February</td>
+        <td>$80</td>
+        <td>$10</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>March</td>
+        <td>$90</td>
+        <td rowspan="2">
+          <strong>$25</strong>
+        </td>
+        <td rowspan="2" class="flash">Spring Combo Deal!</td>
+      </tr>
+      <tr>
+        <td>April</td>
+        <td>$90</td>
+      </tr>
+      <tr>
+        <td>May</td>
+        <td>$100</td>
+        <td>$10</td>
+      </tr>
+      <tr>
+        <td>June</td>
+        <td>$80</td>
+        <td rowspan="2">
+          <strong>$30</strong>
+        </td>
+        <td rowspan="2" class="flash">Summer Steal!</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>$80</td>
+      </tr>
+      <tr>
+        <td>August</td>
+        <td>$100</td>
+        <td>$10</td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+</html>

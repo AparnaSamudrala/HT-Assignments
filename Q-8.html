@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact US page</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .main-container {
+        display: flex;
+      }
+
+      .myForm {
+        background-color: #fff;
+        border-radius: 3px;
+        padding: 1.8em;
+        width: 600px;
+        color: #5d03b0
+      }
+
+      .contact {
+        flex: 1;
+        margin-right: 2em;
+        display: flex;
+      }
+
+      .contact input {
+        width: 100%;
+        border: none;
+        background: none;
+        border-bottom: 2px solid lightgrey;
+      }
+
+      .contact input,
+      .contact button {
+        margin: 1em 0;
+      }
+
+      .contact>div {
+        padding-right: 5rem;
+        font-size: 0.9rem;
+      }
+
+      button {
+        background: slateblue;
+        color: white;
+        border: 1px solid blue;
+        border-radius: 1rem;
+        width: 5rem;
+        padding: .5rem;
+        margin-top: 1rem;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+
+      .msg>div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .right-pane {
+        background-color: #563ee6;
+        padding: 3rem;
+        color: #fff;
+      }
+
+      .contact p {
+        padding-right: 2rem;
+      }
+
+      .page {
+        background: aquamarine;
+        margin: 3rem;
+        padding: 2rem;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="connect-desc">
+        <h1>Connect With Us</h1>
+        <p>We would love to respond to your queries and help you succeed.</p>
+        <p>Feel free to get in touch with us.</p>
+      </div>
+      <div class="main-container">
+        <div class="left-pane">
+          <form class="myForm">
+            <h2>Send your request</h2>
+            <div class="contact">
+              <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="John Amendo">
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input type="number" id="phone" placeholder='+1 425 675 7811' />
+              </div>
+            </div>
+            <div class="contact">
+              <div>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="johnamendo@gmail.com">
+              </div>
+              <div>
+                <label for="sub">Subject</label>
+                <input type="text" id="sub" placeholder="Product Demo">
+              </div>
+            </div>
+            <div class="msg">
+              <div>
+                <label for="comment">Message</label>
+                <textarea id="comment" placeholder="your message"></textarea>
+              </div>
+            </div>
+            <div class="btn-container">
+              <button type="submit">send</button>
+            </div>
+          </form>
+        </div>
+        <div class="right-pane">
+          <p>Reach Us</p>
+          <div class="contact">
+            <p>Email</p>
+            <p>contactus@gmail.com</p>
+          </div>
+          <div class="contact">
+            <p>Phone</p>
+            <p>+1 094 985 9883</p>
+          </div>
+          <div class="contact">
+            <p>Address</p>
+            <p> #212,Ground Floor,7th cross,somelayout,some road,koromangla, Bengaluru 560001 </p>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

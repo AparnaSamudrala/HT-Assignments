@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Reports</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <!-- Bootstrap ICONS CSS  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .d-flex {
+        display: flex;
+      }
+
+      .justify-content-space-between {
+        justify-content: space-between;
+      }
+
+      .justify-content-center {
+        justify-content: center;
+      }
+
+      .navbar {
+        padding: 0 0 0 5rem;
+        height: 10%;
+        background-color: slateblue;
+        color: #fff;
+      }
+
+      .navbar a.logo {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      .navbar ul li {
+        list-style-type: none;
+        padding: 0 1rem;
+        font-size: .85rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      li a.active {
+        text-decoration: underline;
+      }
+
+      main {
+        padding: 2rem 5rem;
+      }
+
+      footer {
+        background-color: slateblue;
+        color: #fff;
+        height: 8vh;
+        font-size: 0.9rem;
+        font-weight: 100;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      th,
+      td {
+        border: 1px solid lightgrey;
+        padding: 1rem;
+      }
+
+      th {
+        background-color: slateblue;
+        color: #fff;
+      }
+
+      tr:nth-child(2n) {
+        background: #a4a4d6;
+      }
+    </style>
+  </head>
+  <style></style>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="navbar d-flex justify-content-space-between">
+          <p>
+            <a class="logo" href="home.html">AutoMob-Mechanic</a>
+          </p>
+          <ul class="d-flex">
+            <li>Hi Admin</li>
+            <span>|</span>
+            <li>
+              <a href="home.html">Home</a>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="services.html">Services</a>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="reports.html" class="active">Reports</a>
+            </li>
+            <span>|</span>
+            <li>contact@automob.co.in <i class="bi bi-envelope"></i>
+            </li>
+            <span>|</span>
+            <li>999-999-9999 <i class="bi bi-phone"></i>
+              </i>
+            </li>
+            <span>|</span>
+            <li>
+              <a href="#">Logout</a>
+            </li>
+          </ul>
+        </nav>
+        <main class="main-table"></main>
+        <footer class="d-flex justify-content-center">
+          <p>Copyright &copy; 2020 AutoMob-Mechanic. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script>
+      let arr = [{
+        cId: "C1001",
+        customerName: "Maria Anders",
+        serviceName: "Car Care Service",
+        serviceDate: "22-jan-2020",
+        cost: 4500
+      }, {
+        cId: "C1002",
+        customerName: "Albert Harry",
+        serviceName: "Preventive Maintainence Service",
+        serviceDate: "28-jan-2020",
+        cost: 5000
+      }, {
+        cId: "C1003",
+        customerName: "John Jacob",
+        serviceName: "Preventive Maintainence Service",
+        serviceDate: "23-jan-2020",
+        cost: 4500
+      }, {
+        cId: "C1004",
+        customerName: "Alia chough",
+        serviceName: "Preventive Maintainence Service",
+        serviceDate: "24-jan-2020",
+        cost: 5000
+      }, {
+        cId: "C1005",
+        customerName: "David James",
+        serviceName: "Car Care Service",
+        serviceDate: "25-jan-2020",
+        cost: 6000
+      }, {
+        cId: "C1006",
+        customerName: "Melvin Jacob",
+        serviceName: "Car Care Service",
+        serviceDate: "26-jan-2020",
+        cost: 7000
+      }, {
+        cId: "C1007",
+        customerName: "Clara Satlin",
+        serviceName: "Body Repair Service",
+        serviceDate: "27-jan-2020",
+        cost: 4500
+      }, {
+        cId: "C1008",
+        customerName: "Maria Anders",
+        serviceName: "Body Repair Service",
+        serviceDate: "28-jan-2020",
+        cost: 4500
+      }, {
+        cId: "C1009",
+        customerName: "John Jacob",
+        serviceName: "Body Repair Service",
+        serviceDate: "29-jan-2020",
+        cost: 5000
+      }, {
+        cId: "C1010",
+        customerName: "John Jacob",
+        serviceName: "Preventive Maintainence Service",
+        serviceDate: "30-jan-2020",
+        cost: 4500
+      }, {
+        cId: "C1011",
+        customerName: "Arav Satya",
+        serviceName: "Body Repair Service",
+        serviceDate: "29-jan-2020",
+        cost: 5000
+      }, {
+        cId: "C1012",
+        customerName: "Steves Jacob",
+        serviceName: "Preventive Maintainence Service",
+        serviceDate: "30-jan-2020",
+        cost: 4500
+      }];
+      var customers = "";
+      customers += `
+							<table>
+								<thead>
+									<th>C.Id</th>
+									<th>Customer Name</th>
+									<th>Service Name</th>
+									<th>Service Date</th>
+									<th>Cost</th>
+								</thead>
+								<tbody>`;
+      arr.map((i) => {
+        customers += `
+									<tr>
+										<td>${i.cId}</td>
+										<td>${i.customerName}</td>
+										<td>${i.serviceName}</td>
+										<td>${i.serviceDate}</td>
+										<td>${i.cost}</td>
+									</tr>`;
+      });
+      customers += `
+								</tbody>
+							</table>`;
+      document.querySelector(".main-table").innerHTML = customers;
+    </script>
+  </body>
+</html>

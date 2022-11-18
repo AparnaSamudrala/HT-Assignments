@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Company Board Profile Card</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: calibri, sans-serif;
+      }
+
+      .dashed {
+        border-top: 2px solid green;
+        position: relative;
+        top: -8px;
+        margin-right: 10px;
+        width: 25px;
+      }
+
+      section {
+        display: flex;
+      }
+
+      .page-description {
+        flex-direction: column;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #f1f2f3;
+      }
+
+      .card {
+        width: 350px;
+        height: auto;
+        background: #fefefe;
+        overflow: hidden;
+        position: relative;
+        margin-right: 3rem;
+      }
+
+      .card img {
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+      }
+
+      .top-content {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        display: flex;
+        border-radius: 0 0 8% 8%;
+      }
+
+      .mid-content {
+        display: flex;
+        justify-content: center;
+      }
+
+      .mid-content .info {
+        position: absolute;
+        padding: 20px 0 10px 0;
+        bottom: 0;
+        width: 200px;
+        left: 0;
+        height: 54px;
+        text-align: center;
+        z-index: 100;
+        background: #fff;
+        border-top-right-radius: 10px;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+        animation: anim 1s ease-in-out;
+      }
+
+      .info span {
+        font-size: 15px;
+        font-weight: 500;
+        display: inline-block;
+        color: #b6b7b8;
+      }
+
+      .info p {
+        font-size: 15px;
+        font-weight: 500;
+        margin-top: 10px;
+        padding: 0 10px;
+      }
+
+      @keyframes anim {
+        0% {
+          top: -1000px;
+        }
+
+        100% {
+          top: 35%;
+        }
+      }
+
+      .green {
+        color: green;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+
+      .desc {
+        color: lightslategray;
+      }
+
+      section.page-description>* {
+        margin: 1.6rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="page-description">
+      <p class="green">The most powerful theme on earth.</p>
+      <h1>We are a team of expert designers</h1>
+      <p class="desc">Lorem Ipsum dolor </p>
+    </section>
+    <section class="card-outer">
+      <div class="card">
+        <div class="top-content">
+          <div class="profile">
+            <img src="https://www.w3schools.com/w3images/team2.jpg">
+          </div>
+        </div>
+        <div class="mid-content">
+          <div class="info">
+            <h2>
+              <span class="dashed"></span>Della Wilde
+            </h2>
+            <span>Chief Executive Officer</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="top-content">
+          <div class="profile">
+            <img src="https://www.w3schools.com/w3images/team3.jpg">
+          </div>
+        </div>
+        <div class="mid-content">
+          <div class="info">
+            <h2>
+              <span class="dashed"></span>Arisha Riley
+            </h2>
+            <span>Vice President</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="top-content">
+          <div class="profile">
+            <img src="https://www.w3schools.com/w3images/team1.jpg">
+          </div>
+        </div>
+        <div class="mid-content">
+          <div class="info">
+            <h2>
+              <span class="dashed"></span>Blain Myer
+            </h2>
+            <span>Chief Financial Officer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

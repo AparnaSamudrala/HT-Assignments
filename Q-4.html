@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+  <title>Pizza Delivery System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <style>
+    .myForm {
+      display: grid;
+      grid-template-columns: [labels] auto [controls] 1fr;
+      grid-auto-flow: row;
+      grid-gap: .5em;
+      margin: 0 auto;
+      padding: 1em;
+      width: 60%;
+    }
+
+    .myForm>*,
+    .myForm {
+      border: 1px solid;
+    }
+
+    .myForm h1,
+    .myForm h2 {
+      grid-column: 1/3;
+      padding-bottom: .5rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    .myForm label[for="comments"] {
+      padding: 1.3rem;
+    }
+
+    .myForm>label {
+      grid-column: labels;
+      grid-row: auto;
+      padding: 10px;
+      margin: 0;
+      height: 30px;
+    }
+
+    .myForm .controls {
+      grid-column: controls;
+      grid-row: 100%;
+      padding: 15px;
+    }
+
+    .myForm .btn {
+      text-align: center;
+      grid-column: 1/3;
+      padding: 5px 0
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="number"] {
+      width: 100%;
+    }
+
+    .required:after {
+      content: " *";
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <form class="myForm">
+    <h1>XYZ Online Delivery</h1>
+    <h2>Personal Details</h2>
+    <label for="customer_name" class="required">First Name </label>
+    <div class="controls">
+      <input type="text" name="customer_name" id="customer_name" maxlength="20" required>
+    </div>
+    <label class="required" for="phone">Phone Number </label>
+    <div class="controls">
+      <input type="text" name="phone" id="phone" maxlength="10" required>
+    </div>
+    <h2>Order Preferences</h2>
+    <label class="required" for="size">Size</label>
+    <div class="controls">
+      <label>
+        <input type="radio" name="size" id="size_small" required value="small"> Small </label>
+      <label>
+        <input type="radio" checked name="size" id="size_med" required value="medium"> Medium </label>
+      <label>
+        <input type="radio" name="size" id="size_lg" required value="large"> Large </label>
+    </div>
+    <label class="required" for="toppings">Base</label>
+    <div class="controls">
+      <select id="toppings">
+        <option>Chicken Stuffed crust....</option>
+        <option>Pan Pizza....</option>
+        <option>Cheese Crust....</option>
+      </select>
+    </div>
+    <label>Toppings</label>
+    <div class="controls">
+      <input type="checkbox" name="" value="" />Cheese <input type="checkbox" name="" value="" checked />Olives <input type="checkbox" name="" value="" />Tomatoes <input type="checkbox" name="" value="" Checked />Capsicum <input type="checkbox" name="" value="" />Jalapenos <input type="checkbox" name="" value="" checked />Mushrooms <input type="checkbox" name="" value="" checked />Pepperoni <input type="checkbox" name="" value="" checked />Onion
+    </div>
+    <label for="comments">Additional Details</label>
+    <div class="controls">
+      <textarea name="comments" id="comments" row="2" cols="30"></textarea>
+    </div>
+    <div class="btn">
+      <strong>Confirm details and proceed to pay? </strong>
+      <input type="radio" name="affirm" checked /> Yes <input type="radio" name="affirm" /> No
+    </div>
+    <div class="btn">
+      <button>Submit</button>
+    </div>
+  </form>
+</body>
+</html>

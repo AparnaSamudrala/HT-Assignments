@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flex layout</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100vh;
+        flex-wrap: wrap;
+      }
+
+      .container>div {
+        font-size: 5vw;
+        padding: .5em;
+        color: white;
+        margin: 2px;
+        border-radius: 3px;
+        background: yellowgreen;
+        border: 5px solid black;
+      }
+
+      .container>div:nth-child(1),
+      .container>div:nth-child(2) {
+        width: 49%;
+        background: #f0a346;
+      }
+
+      .container>div:nth-child(3) {
+        width: 100%;
+      }
+
+      .container>div:nth-child(4),
+      .container>div:nth-child(5),
+      .container>div:nth-child(6) {
+        width: 32%;
+        background: #6495ed;
+      }
+
+      .container>div:nth-child(7),
+      .container>div:nth-child(8),
+      .container>div:nth-child(9),
+      .container>div:nth-child(10) {
+        width: 24%;
+        background: lightgrey;
+      }
+
+      @media screen and (max-width: 320px) {
+
+        .container>div:nth-child(1),
+        .container>div:nth-child(2),
+        .container>div:nth-child(4),
+        .container>div:nth-child(5),
+        .container>div:nth-child(6),
+        .container>div:nth-child(7),
+        .container>div:nth-child(8),
+        .container>div:nth-child(9),
+        .container>div:nth-child(10) {
+          width: 100%;
+        }
+      }
+
+      @media screen and (min-width: 320px)and (max-width: 768px) {
+
+        .container>div:nth-child(1),
+        .container>div:nth-child(2),
+        .container>div:nth-child(4),
+        .container>div:nth-child(5),
+        .container>div:nth-child(6) {
+          width: 100%;
+        }
+
+        .container>div:nth-child(7),
+        .container>div:nth-child(8),
+        .container>div:nth-child(9),
+        .container>div:nth-child(10) {
+          width: 49%;
+        }
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>
