@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table with Delete Functionality</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<style>
+	  h1{
+		text-align: center;
+		color: darkcyan;
+	  }
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 50px auto;
+		background: aqua;
+		border: 10px solid darkcyan;
+      }
+
+      td,
+      th {
+        padding: 10px;
+        text-align: left;
+      }
+	 tr {
+        border-bottom: 2px solid #CCC;
+		opacity: 0;   
+		transform: translateX(300px);
+		transition: all 0.6s ease-out;
+      }
+	  
+	  tr.show{
+		 opacity: 1;
+		 transform: translateX(0);
+	  }
+
+      .del button {
+        color: #fff;
+        cursor: pointer;
+        background: #ff0000;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+	<h1>Table With Delete Functionality (Using DOM API)</h1>
+    <section id="box"></section>
+    <script>
+	//Declaring DOM variables
+      let headers = ["name", "gender", "city", ];
+      let box = document.getElementById("box");
+      let name = document.getElementById('name');
+      let gender = document.getElementById('gender');
+      let city = document.getElementById('city');
+
+	//Defining constructor
+      function record(name, gender, city) {
+        this.name = name;
+        this.gender = gender;
+        this.city = city;
+      }
+	  
+	  //instaintiating the constructor
+      let myTable = [
+        new record('Harry Potter', 'Male', 'Washington'),
+        new record('Amit Potter', 'Male', 'Washington'),
+        new record('Acky Potter', 'Male', 'Washington'),
+        new record('Jock Potter', 'Male', 'Washington'),
+        new record('John Potter', 'Male', 'Washington'),
+        new record('Peter Potter', 'Male', 'Washington')
+      ];
+	  
+	  
+	  //Creating table with DOM API
+      function makeTable() {
+        // Get rid of the prior table (if exists)
+        if (document.getElementById("myTable")) {
+          document.getElementById("myTable").remove();
+        }
+        let tbl = document.createElement("table");
+        tbl.id = "myTable";
+        let row1 = document.createElement("tr");
+		row1.classList.add("show");
+        row1.innerHTML = `
+           
+			<th class="top1">Name</th>
+			<th class="top2">Gender</th>
+			<th class="top3">City</th>
+			<th class="top4">Action</th>
+         `;
+        tbl.appendChild(row1);//Adds table header 
+		
+		
+		//Looping through table rows
+        for (i = 0; i < myTable.length; i++) {
+          let row = document.createElement("tr");
+          // Loop over the headers array to build the row cells
+          headers.forEach(function(header, index) {
+            let cell = document.createElement("td");
+            cell.textContent = myTable[i][header];
+            cell.classList.add("box" + (index + 1));
+			row.classList.add("show");
+            row.appendChild(cell); // Add the cell to the row
+          });
+          let delCell = document.createElement("td");
+          delCell.innerHTML = "<button>Delete</button>";
+          delCell.classList.add("del");
+		  
+		  //Delete button event handling logic 
+		  
+          delCell.addEventListener("click", function() {
+            myTable.splice(i, 1); // Remove record from table
+			let container = this.closest("tr");
+			container.classList.remove('show');
+			setTimeout(function(){
+				container.classList.remove('show');
+				
+				//Animation effect on removal of table row
+				
+				container.ontransitionend = function(){
+				  container.remove();
+				}
+			}, 350);
+			});
+          row.appendChild(delCell); // Add cell to row
+          tbl.appendChild(row); // Add row to table
+          box.appendChild(tbl); // Add table to section
+        }
+      }
+      makeTable();
+    </script>
+  </body>
+</html>
