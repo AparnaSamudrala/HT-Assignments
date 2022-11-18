@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Countries</title>
+    <style>
+        .container {
+            background: skyblue;
+            border: 30px solid grey;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        select {
+            width: 170px;
+            margin: 0 20px 20px 0;
+            padding: 10px;
+            background: gainsboro;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+    <script>
+
+        let data;
+        fetch('./state.json').then(
+            function (u) { return u.json(); }
+        ).then(
+            function (json) {
+                data = json;
+                console.log(data);
+
+                /*Declaring Variables for the three dropdowns*/
+
+                const countrySel = document.querySelector('#countries');
+                const stateSel = document.getElementById('state');
+                const citySel = document.getElementById('city');
+                /*Load country drop down options*/
+                for (var country in data) {
+                    countrySel.options[countrySel.options.length] = new Option(country, country);
+                }
+
+                /*Country Dropdown change event handler*/
+
+                countrySel.onchange = function () {
+                    stateSel.length = 1; // remove all options bar first
+                    citySel.length = 1; // remove all options bar first
+                    if (this.selectedIndex < 1) return; // done 
+                    for (var state in data[this.value]) {
+                        stateSel.options[stateSel.options.length] = new Option(state, state);
+                    }
+                }
+                countrySel.onchange(); // reset in case page is reloaded
+
+                /*Select Dropdown change event handler*/
+
+                stateSel.onchange = function () {
+                    citySel.length = 1; // remove all options bar first
+                    if (this.selectedIndex < 1) return; // done 
+                    var city = data[countrySel.value][this.value];
+                    for (var i = 0; i < city.length; i++) {
+                        citySel.options[citySel.options.length] = new Option(city[i], city[i]);
+                    }
+                }
+            }
+        ).catch(err => {
+            console.log(err);
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>All countries Dropdown List</h1>
+        <form action="">
+
+
+            <label for="countries">Select Country:</label>
+            <select id="countries" name="countries">
+                <option selected="selected">--Select Country--</option>
+            </select>
+
+            <label for="state">Select State:</label>
+            <select id="state" name="state">
+                <option selected="selected">--Select Country First--</option>
+            </select>
+
+
+            <label for="city">Select City:</label>
+            <select id="city" name="city">
+                <option selected="selected">--Select State First--</option>
+            </select>
+
+
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>

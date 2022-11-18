@@ -1,0 +1,31 @@
+
+{
+    "India": { 
+    "Delhi": ["new Delhi", "North Delhi"],
+    "Kerala": ["Thiruvananthapuram", "Palakkad"],
+    "Goa": ["North Goa", "South Goa"],
+    "Assam": ["Guwahari","Silchar","Nagaon"],
+    "Bihar":["Patna","Gaya","Bhagalpur"],
+    "Gujarat":["Ahmedabad","Surat","Rajkot"]
+    },
+    "Australia": {
+    "South Australia": ["Dunstan", "Mitchell"],
+    "Victoria": ["Altona", "Euroa"]
+    }, 
+    "Canada": {
+    "Alberta": ["Acadia", "Bighorn"],
+    "Columbia": ["Washington", ""]
+    },
+    "Belgium": {
+        "Flanders": ["Zaventem","Wervik"]
+    },
+    "Singapore": {
+        "Central Singapore":["Singapore"]
+    },
+    "Malaysia": {
+        "Kedah": ["Kuah"],
+        "Johor": ["Segamat","Kluang","Johor Bahru"]
+    }
+}
+
+    
