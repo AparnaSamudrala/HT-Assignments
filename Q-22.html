@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Employee Information System</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<style>
+		table{
+			border: 1px solid;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		table td,th{
+			border: 1px solid;
+			padding: 5px;
+		}
+
+		label{
+			width: 150px;
+			display: inline-block;
+			
+		}
+		form{
+			padding: 20px;
+			background-color: #4d954d;
+			color: #fff;
+		}
+		fieldset,.main{
+			padding: 20px;
+			width: 60%;
+			margin: 0 auto;
+		}
+		fieldset div{
+			float: left;
+		}
+		.col-1{
+			width: 65%;
+		}
+
+		.col-2{
+			width: 28%;
+			border: 2px solid #ccc;
+			padding: .6rem .5rem 0 1.3rem;
+			
+		}
+		.col-2 button,.col-3 button{
+			display: block;
+			padding: .3rem;
+			width: 10rem;
+			margin-bottom: 1rem;
+			background-color: #d3d3d3;
+			border: none;
+			font-size: .7rem;
+			cursor: pointer;
+		}
+
+		.col-2 button{
+			text-transform: uppercase;
+		}
+
+		.col-2 button::first-letter{
+		text-decoration: underline;
+		}
+
+		.col-3 {
+			clear: both;
+			border: 2px solid #ccc;
+			margin-top: 1rem;
+			padding: 0 10px;
+		}
+
+		.col-3 button{
+			display: inline-block;
+			margin-right: 0;
+			margin-top: 10px;
+		}
+
+		</style>
+		</head>
+	<body>
+		<form>
+		 
+		  <fieldset>
+		  <legend>Employee's Information System Version 1.0</legend>
+		  <div class="col-1">
+			<label for="enumber">Employee Number:</label>
+			<input type="text" id="enumber" name="enumber"><br><br>
+			<label for="ename">Employee name:</label>
+			<input type="text" id="ename" name="ename"><br><br>
+			<label for="city">City Address:</label>
+			<input type="text" id="city" name="city"><br><br>
+			<label for="dob">Date of Birth:</label>
+			<input type="date" id="dob" name="dob"><br><br>
+
+			<label for="tel">Telephone Number:</label>
+			<input type="text" id="tel" name="tel"><br><br>
+			<label for="dept">Department:</label>
+			<input type="dept" id="dept" name="dept"><br><br>
+			
+		  </div>
+		  
+		  <div class="col-2">
+			<button id="add" onclick="addEmployee()"> Add </button>
+			<button id="view" onclick="displayEmployees()">View</button>
+			<button id="delete" onclick="delEmployee(id)"> Delete </button>
+			<button id="update" onclick="updateEmployee()"> Update </button>
+			<button id="search"> Search </button>
+			
+		  </div>
+		  
+		  <div class="col-3">
+			<button id="moveFirst"> Move First </button>
+			<button id="moveNext"> Move Next  </button>
+			<button id="movePrevious"> Move Previous </button>
+			<button id="moveLast"> Move Last</button>
+		  
+		  </div>
+		  
+		  </fieldset>
+		  
+		  <div class="main">
+
+		</div>
+		 
+		</form>
+
+
+		<script>
+
+		var employees =[];
+		var record = "";
+		var id = document.getElementById('enumber').value;
+
+		/* Adding employee object to employees array*/
+		function addEmployee(){
+			event.preventDefault();
+			record = "";
+			var employee = {};
+			var enumber = document.getElementById('enumber').value;
+			var ename = document.getElementById('ename').value;
+			var city = document.getElementById('city').value;
+			var dob = document.getElementById('dob').value;
+			var tel = document.getElementById('tel').value;
+			var dept = document.getElementById('dept').value;
+
+			employee.id = enumber;
+			employee.name = ename;
+			employee.city = city;
+			employee.dob = dob;
+			employee.tel = tel;
+			employee.dept = dept;
+			
+			employees.push(employee);
+			
+			console.log("employee :"+employee);
+
+			console.log(employees);
+			document.querySelector(".main").innerHTML = displayEmployees();
+			return employees;
+		}
+
+		/* View Employees data in a tabular format */
+		function displayEmployees(){
+			event.preventDefault();
+			record = "";
+			record += `<table>
+				<thead>
+					<th>Employee ID</th>
+					<th>Employee Name</th>
+					<th>City Address</th>
+					<th>Date of Birth</th>			
+					<th>Telephone Number</th>
+					<th>Department</th>
+				</thead>
+				<tbody>`;
+					employees.forEach(ele =>{
+						record += 	`<tr>
+								<td>${ele.id}</td>
+								<td>${ele.name}</td>
+								<td>${ele.city}</td>
+								<td>${ele.dob}</td>
+								<td>${ele.tel}</td>
+								<td>${ele.dept}</td>
+							</tr>`
+						});
+						
+		  
+		  record += `</tbody>
+			</table>`;
+			return record;
+		  
+		}
+
+		/*Delete last employee record*/
+
+		 let delEmployee = (id) => {
+			event.preventDefault();
+			record = ""; 
+			employees.pop();
+			document.querySelector(".main").innerHTML = displayEmployees();
+		} 
+
+		/* Update Employee record */
+
+		let updateEmployee = () =>{
+			event.preventDefault();
+			record = ""; 
+		}
+		</script>
+	</body>
+</html>
