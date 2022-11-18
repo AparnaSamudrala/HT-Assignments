@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slideshow Images</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      * {
+        box-sizing: border-box
+      }
+
+      body {
+        font-family: Verdana, sans-serif;
+        margin: 0
+      }
+
+      .mySlides {
+        display: none;
+        height: 50vh;
+        margin: 50px auto;
+        width: 500px;
+        border: 20px inset darkcyan;
+      }
+
+      img {
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+      }
+
+      /* Fading animation */
+      .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      @-webkit-keyframes fade {
+        from {
+          opacity: .4
+        }
+
+        to {
+          opacity: 1
+        }
+      }
+
+      @keyframes fade {
+        from {
+          opacity: .4
+        }
+
+        to {
+          opacity: 1
+        }
+      }
+
+      p {
+        margin-top: 35px;
+        color: blueviolet;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      h1 {
+        text-align: center;
+        color: darkcyan;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Slider</h1>
+    <div class="slideshow-container"></div>
+    <script>
+      let arr = [{
+        imgSrc: "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+        id: 1
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/autumn-fall-nature-scene-autumnal-park-beautiful-77869343.jpg",
+        id: 2
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/bee-flower-27533578.jpg",
+        id: 3
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/landscape-nature-mountan-alps-rainbow-76824355.jpg",
+        id: 4
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/autumn-halloween-pumpkins-orange-pumpkins-over-nature-background-bright-autumnal-78542000.jpg",
+        id: 5
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg",
+        id: 6
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/panorama-view-sea-colorful-sky-cloud-bright-full-moon-seascape-to-night-serenity-nature-background-outdoor-131503361.jpg",
+        id: 7
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/happy-woman-sunset-nature-iwith-open-hands-summer-95038703.jpg",
+        id: 8
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/woman-yoga-relax-nature-lake-60434685.jpg",
+        id: 9
+      }, {
+        imgSrc: "https://thumbs.dreamstime.com/b/toucan-sitting-branch-forest-green-vegetation-costa-rica-nature-travel-central-america-two-keel-billed-ramphastos-136803994.jpg",
+        id: 10
+      }];
+      const slides = document.getElementsByClassName("mySlides");
+      var images = "";
+      arr.map((ele) => {
+        images += `
+					<div class="mySlides fade">
+						<img src='${ele.imgSrc}'alt=""/>
+						<p>Image: ${ele.id}</p>
+					</div>`;
+      });
+	  
+      document.querySelector(".slideshow-container").innerHTML = images;
+      let slideIndex = 0;
+      let timeoutId = null;
+      showSlides();
+
+      function showSlides() {
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1
+        }
+        slides[slideIndex - 1].style.display = "block";
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }
+    </script>
+  </body>
+</html>

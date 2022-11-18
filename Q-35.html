@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>Simulating a Periodic Stock Price Change</title>
+	</head>
+	<body>
+
+		<h1>Simulating a Period Stock Price Change</h1>
+
+		<p id="price"></p>
+
+		<script>
+		
+			setInterval(myTimer, 3000);/* set the new price after 3 secs */
+			clearInterval(myTimer,5000);/* clear the new price after 5 secs */
+			
+			/*Call Back function for setting the price*/
+			function myTimer() {
+			  const d = (Math.random()*100);
+			  console.log("Stock Price: Rs."+Math.round(d));
+			  document.getElementById("price").innerHTML = "<strong>Stock Price: </strong> Rs."+Math.round(d);
+			}
+
+			//Create a promise object as setinterval is asynchronous function
+			let myPromise = new Promise(function(myResolve, myReject) {
+			  myResolve(); // when successful
+			  myReject();  // when error
+			});
+			
+			//calling our call back function when promise is resolved as successful
+			myPromise.then(
+			  function(value) { myTimer(value);/* code if successful */ },
+			  function(error) { myTimer(error);/* code if some error */ }
+			);
+		</script>
+
+	</body>
+</html>

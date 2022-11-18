@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js"
+   integrity="sha512-vFABRuf5oGUaztndx4KoAEUVQnOvAIFs59y4tO0DILGWhQiFnFHiR+ZJfxLDyJlXgeut9Z07Svuvm+1Jv89w5g=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"> </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check a valid Date Format</title>
+</head>
+<body>
+   <p id = "validate"> </p>
+   <script>
+   
+   //Arrow function to check if a date is in valid format using moment.js
+	var checkDate = () => { 
+      let validate = document.getElementById("validate");
+      let date = moment('03-18-2018', 'MM-DD-YYYY');
+      validate.innerHTML += " 03-18-2018 :  " + date.isValid() + "<br/>";
+      date = moment("19-12-1995", 'MM-DD-YYYY');
+      validate.innerHTML += " 19-12-1995 : " + date.isValid();
+    }
+    checkDate();
+   </script>
+</body>
+</html>

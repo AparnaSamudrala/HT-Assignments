@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code Editor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      textarea {
+        width: 32%;
+        height: 250px;
+        background: #333;
+        color: #fff;
+      }
+
+      iframe {
+        width: 500px;
+        height: 250px;
+        margin-left: 30%;
+      }
+
+      label {
+        margin-left: 45%;
+      }
+
+      button {
+        padding: 0.7rem;
+        width: 7rem;
+        border-radius: 0.5rem;
+        border: none;
+        background: green;
+        color: #fff;
+        margin-bottom: 2rem;
+        cursor: pointer;
+      }
+
+      h1 {
+        text-align: center;
+        color: #425f5f;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Code Pen Editor</h1>
+    <button onclick="run()">Run</button>
+    <div class="editor">
+      <textarea id="html-code" placeholder="HTML code here"></textarea>
+      <textarea id="css-code" placeholder="CSS Code here"></textarea>
+      <textarea id="js-code" placeholder="JS code here"></textarea>
+      <label>Output Result!!</label>
+      <br />
+      <iframe id="output"></iframe>
+    </div>
+    <script type="text/javascript">
+      function run() {
+        let htmlCode = document.querySelector(".editor #html-code").value;
+        let cssCode = "<style>"+document.querySelector(".editor #css-code").value+"</style>";
+        let jsCode = document.querySelector(".editor #js-code").value;
+        let output = document.querySelector(".editor #output");
+        output.contentDocument.body.innerHTML = htmlCode + cssCode;
+        output.contentWindow.eval(jsCode);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        background: white;
+        color: white;
+        font: 87.5%/1.5em 'Open Sans', sans-serif;
+        margin: 0;
+      }
+
+      p {
+        line-height: 1.5em;
+      }
+
+      .login {
+        margin: 50px auto;
+        width: 500px;
+      }
+
+      .login form {
+        border: 5px solid #ff9800;
+        margin: auto;
+        padding: 20px;
+        width: 100%;
+        border-radius: 5px;
+        background: #282e33;
+      }
+
+      .login form input[type="email"],
+      input[type="text"],
+      input[type="date"],
+      .login form input[type="password"] {
+        border-radius: 0px 3px 3px 0px;
+        color: #a9a9a9;
+        margin-bottom: 1em;
+        padding: 0 16px;
+        width: 92%;
+        height: 50px;
+      }
+
+      .login form input[type="submit"] {
+        background: #ff9800;
+        border: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+      }
+
+      #signinForm form input[type="submit"] {
+        background: #737e8a;
+      }
+
+      #signinForm {
+        display: none;
+      }
+
+      #signinForm form {
+        background: lightgrey;
+        color: #333;
+        border: 5px solid #ccc;
+      }
+
+      #registerForm h1 {
+        background: orange;
+        padding: 15px;
+        text-align: center;
+      }
+
+      .img-placeholder {
+        width: 150px;
+        border-radius: 50%;
+        margin-left: 165px;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login" id="registerForm">
+      <form name='form-login'>
+        <h1>Sign Up Here</h1>
+        <input type="text" id="fname" placeholder="First name" required>
+        <input type="text" id="lname" placeholder="Last name" required>
+        <input type="email" id="email" placeholder="Enter your Email" required>
+        <input type="password" id="pw" placeholder="Password" required>
+        <input type="password" id="repwd" placeholder="Repeat Password" required>
+        <ul class="helper-text">
+          <li class="length">Must be at least 8 characters long.</li>
+          <li class="lowercase">Must contain a lowercase letter.</li>
+          <li class="uppercase">Must contain an uppercase letter.</li>
+          <li class="special">Must contain a number or a special character.</li>
+        </ul>
+        <label for="dob">Enter your Date Of Birth: </label>
+        <br />
+        <br />
+        <input type="date" id="dob" placeholder="email" required>
+        <br />
+        <br />
+        <input type="radio" name="Gender" value="Male" checked />Male <input type="radio" name="Gender" value="Female" />Female <input type="radio" name="Gender" value="Other" />Others <br />
+        <br />
+        <input type="checkbox" name="affirm" checked />I agree all the terms and conditions <br />
+        <br />
+        <input id="rgstr_btn" type="submit" value="Submit Here" onclick="store(event)">
+      </form>
+    </div>
+	<!-- Sign In form once signUp done successfully -->
+    <div class="login" id="signinForm">
+      <form name='form-login'>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm0gw1Qon8aQmHbrqQD4Z1-LKICaMGlp1HXA&usqp=CAU" class="img-placeholder" />
+        <input type="email" id="userName" placeholder="Email address " required>
+        <input type="password" id="userPw" placeholder="Password" required>
+        <div id="remember">
+          <input type="checkbox" value="lsRememberMe" id="rememberMe" style="display: inline-block;" checked>
+          <label>Remember me</label>
+        </div>
+        <input id="login_btn" type="submit" value="Sign In" onclick="check()">
+      </form>
+    </div>
+    <script>
+	//Stores all form fields into local storage and validate form fields (required and pwd criteria)
+      function store(event) {
+        event.preventDefault();
+        var email = document.getElementById('email');
+        var fname = document.getElementById('fname');
+        var lname = document.getElementById('lname')
+        var dob = document.getElementById('dob');
+        var pw = document.getElementById('pw');
+        var lowerCaseLetters = /[a-z]/g;
+        var upperCaseLetters = /[A-Z]/g;
+        var numbers = /[0-9]/g;
+        if (fname.value.length == 0 || lname.value.length == 0 || email.value.length == 0 || pw.value.length == 0 || dob.value.length == 0) {
+          alert('Please fill in all input fields');
+        } else if (pw.value.length < 8) {
+          alert('Min length of password is 8');
+        } else if (!pw.value.match(numbers)) {
+          alert('password must have atleast 1 number');
+        } else if (!pw.value.match(upperCaseLetters)) {
+          alert('password must have atleast 1 uppercase letter');
+        } else if (!pw.value.match(lowerCaseLetters)) {
+          alert('password must have atleast 1 lowercase letter');
+        } else {
+          localStorage.setItem('email', email.value);
+          localStorage.setItem('pw', pw.value);
+          localStorage.setItem('firstname', fname.value);
+          localStorage.setItem('lastname', lname.value);
+          localStorage.setItem('dob', dob.value);
+          alert('Your account has been created');
+          document.getElementById('signinForm').style.display = 'block';
+          document.getElementById('registerForm').style.display = 'none';
+        }
+      }
+	  
+      //Validate user login credentails from the stored values in storage
+      function check() {
+        var storedemail = localStorage.getItem('email');
+        var storedPw = localStorage.getItem('pw');
+        var userName = document.getElementById('userName');
+        var userPw = document.getElementById('userPw');
+        var userRemember = document.getElementById("rememberMe");
+        if (userName.value == storedemail && userPw.value == storedPw) {
+          alert('You are logged in successfully.');
+        } else {
+          alert('Invalid Username or Password');
+        }
+      }
+    </script>
+  </body>
+</html>

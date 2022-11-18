@@ -1,0 +1,109 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <title>Booking Details</title>
+	 <meta charset="UTF-8">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+     <style>
+       div#maincontent {
+         height: 150px;
+         width: 500px;
+         border: 1px solid #CEE2FA;
+         text-align: left;
+         color: #08438E;
+         font-family: calibri;
+         font-size: 20;
+         padding: 5px;
+         margin-left: 10px;
+       }
+
+       div#heading {
+         text-decoration: bold;
+         text-align: center;
+         margin-top: 40px;
+         margin-left: 10px;
+         width: 500px;
+         border: 1px solid #CEE2FA;
+         text-align: center;
+         color: #08438E;
+         background-color: #CEE2FA;
+         font-family: calibri;
+         font-size: 20;
+         padding: 5px;
+       }
+
+       h2 {
+         padding: 0;
+         margin: 0;
+       }
+     </style>
+   </head>
+   <body>
+     <div id="heading">
+       <h2>Booking Summary</h2>
+     </div>
+     <div id="maincontent">
+       <input type="number" placeholder="Number of seats" id="noOfSeats" value="1" />
+       <button id="book" onclick="calculateCost(seats)">Book</button>
+       
+       <p id ="cost"></p>
+       <p id="total"></p>
+	   <p id="message"></p>
+       <p id="discount"></p>
+       <script>
+         var seats = document.getElementById('noOfSeats').value;
+		 
+		 /*Function to calculate booking cost per seat and validation*/
+         function calculateCost(seats) {
+			 var seats = document.getElementById('noOfSeats').value;
+			  
+			   if (seats <= 2) {
+				 document.getElementById('message').innerHTML = "No Discount Applied for "+seats+" seats.";
+				 document.getElementById('cost').innerHTML = "Cost per ticket is : $9";
+				 document.getElementById('total').innerHTML = "Total Cost: $" + 9 * seats
+			   } 
+			   else if(seats >= 6){
+				document.getElementById('message').innerHTML = "Booking Not Allowed for more than "+seats+"seats.";
+				document.getElementById('cost').innerHTML = "";
+				document.getElementById('total').innerHTML = "";
+				
+			   }
+			   else if (seats > 2 && seats < 6) {
+				 document.getElementById('cost').innerHTML = "Cost per ticket is : $9";
+				 document.getElementById('total').innerHTML = "Total Cost: $" + 9 * seats;
+				 document.getElementById('message').innerHTML = `Congratulations! ${seats}  seats are eligible for discount <a href="#" onclick="calculateDiscount(seats)">Apply</a>`;
+				 
+			   }
+         }
+         
+		 /*Function to apply discount */
+         function calculateDiscount(seats){
+			 event.preventDefault();
+			 var seats = document.getElementById('noOfSeats').value;
+			 
+			 var discount = 0;
+			 switch (seats){
+			   case '3':  
+					discount = 5;
+					break;
+			   case '4':  
+					discount = 7;
+					break;
+			   case '5':  
+					discount = 9;
+					break;
+			   default:  discount = 0;
+			 
+			 }
+			 var result = 0;
+			 var price = 9 * seats;
+			 result = (price - (price * (discount/100))).toFixed(2);;
+			 
+			 alert("Amount Payable after discount is: $" + result);
+         }
+       </script>
+     </div>
+   </body>
+ </html>

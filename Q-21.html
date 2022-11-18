@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Array methods on Fruits</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      button {
+        color: #fff;
+        background: green;
+        padding: .5rem;
+        margin: 10px;
+        border: none;
+        border-radius: .5rem;
+        cursor: pointer;
+      }
+
+      .output-container,
+      .input-container {
+        display: none;
+      }
+
+      #submit {
+        background: #808080;
+        width: 6rem;
+      }
+
+      .input-container {
+        border: 2px dashed #ccc;
+        padding: 15px;
+        width: 20%;
+      }
+
+      input[type="text"] {
+        width: 95%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Implementation of Array Functions</h1>
+    <div class="main-container">
+      <button id="add" onclick="addElements()"> Add Element </button>
+      <button id="remove" onclick="remove()"> Remove Element </button>
+      <button id="removeAll" onclick="removeAll()"> Remove All </button>
+      <button id="toUpper" onclick="toUpperCase()"> Display Upper Case </button>
+      <button id="toLower" onclick="toLowerCase()"> Display Lower Case </button>
+      <br />
+      <div class="input-container">
+        <input type="text" id="item1" name="item1">
+        <br />
+        <br />
+        <input type="text" id="item2" name="item2">
+        <br />
+        <br />
+        <input type="text" id="item3" name="item3">
+      </div>
+      <button id="submit" onclick="submit()">Submit </button>
+      <div class="output-container">
+        <strong id="selectText">Your selected values are: </strong>
+        <p id="result"></p>
+        <p id="error"></p>
+      </div>
+    </div>
+    <script>
+      function addElements() {
+        document.querySelector('.input-container').style.display = 'block';
+      }
+
+		/*To display elements that are added via inputs*/
+      function submit() {
+        document.getElementById('error').innerHTML = "";
+        var fruits = [];
+        var item1 = document.getElementById('item1').value;
+        var item2 = document.getElementById('item2').value;
+        var item3 = document.getElementById('item3').value;
+        if (item1 != "") fruits.push(item1);
+        //console.log(fruits);
+        if (item2 != "") fruits.push(item2);
+        //console.log(fruits);
+        if (item3 != "") fruits.push(item3);
+        //console.log(fruits);
+        document.getElementById('result').innerHTML = fruits.join('<br/>')
+          document.querySelector('.output-container').style.display = 'block';
+          if (fruits == "") {
+            document.getElementById('error').innerHTML = "NO New elements to be added. Please input elements to be added";
+            document.querySelector('#selectText').innerHTML = '';
+          }
+        }
+
+		/* To remove last element from the array*/
+        function remove() {
+          var x = document.getElementById('result').innerHTML;
+          if (x) {
+            var newFruits = x.split('<br>');
+              console.log(typeof newFruits); 
+			  console.log("Before pop: " + newFruits); 
+			  newFruits.pop(); 
+			  console.log("After Pop: " + newFruits); 
+			  document.getElementById('result').innerHTML = newFruits.join('<br/>');
+              }
+              else {
+                document.getElementById('error').innerHTML = "Cannot perform remove operation on an empty array."
+              }
+            }
+
+			/* To remove all elements from the array*/
+            function removeAll() {
+              var x = document.getElementById('result').innerHTML;
+              if (x) {
+                var newFruits = x.split('<br>');
+                  newFruits.splice(0, newFruits.length); document.getElementById('result').innerHTML = newFruits;
+                }
+                else {
+                  document.getElementById('error').innerHTML = "Cannot perform remove all operation on an empty array."
+                }
+              }
+
+				/* To convert all elements in the array into upper case */
+              function toUpperCase() {
+                var x = document.getElementById('result').innerHTML;
+                if (x) {
+                  var newFruits = x.split(' < br > ');
+                    var upper = newFruits.map(element => {
+                      return element.toUpperCase();
+                    }); document.getElementById('result').innerHTML = upper.join('<br/>');
+                    }
+                    else {
+                      document.getElementById('error').innerHTML = "Cannot convert to upper case on an empty array."
+                    }
+                  }
+					
+					/* To convert all elements in the array into lower case */
+                  function toLowerCase() {
+                    var x = document.getElementById('result').innerHTML;
+                    if (x) {
+                      var newFruits = x.split('<br>');
+                        var lower = newFruits.map(element => {
+                          return element.toLowerCase();
+                        }); document.getElementById('result').innerHTML = lower.join('<br/>');
+                        }
+                        else {
+                          document.getElementById('error').innerHTML = "Cannot convert to lower case on an empty array."
+                        }
+                      }
+    </script>
+  </body>
+</html>

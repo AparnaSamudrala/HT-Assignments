@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Simple Calculator using HTML, CSS and JavaScript</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      .calculator {
+        padding: 10px;
+        border-radius: 1em;
+        height: 300px;
+        width: 250px;
+        background-color: #e2b9b9;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      }
+
+      td {
+        width: 30px;
+      }
+
+      .display-box {
+        background-color: #23235c;
+        border: solid black 0.5px;
+        color: cyan;
+        border-radius: 5px;
+        width: 92%;
+        height: 65%;
+        font-weight: bold;
+        font-size: 20px;
+        padding-left: 15px;
+        letter-spacing: 3px;
+      }
+
+      #clear {
+        background-color: #c5f795;
+      }
+
+      #btn {
+        background-color: #ffff26;
+      }
+
+      input[type=button] {
+        font-weight: bold;
+        background-color: #fff;
+        color: #333;
+        border: none;
+        width: 100%;
+        border-radius: 5px;
+        height: 70%;
+        outline: none;
+      }
+
+      input:active[type=button] {
+        background: #e5e5e5;
+        -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+        -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+        box-shadow: inset 0px 0px 5px #c1c1c1;
+      }
+
+      .d-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+      }
+	  
+	  body{
+		 background: skyblue;
+	  }
+
+      .image-wrapper {
+        margin: 20px;
+      }
+
+      img {
+        width: 380px;
+        height: 290px;
+        object-fit: contain;
+      }
+	  h1{
+		text-align: center;
+		color: #425f5f;
+	  }
+    </style>
+  </head>
+  <body>
+	<h1>Basic Calculator</h1>
+    <div class="d-flex">
+      <table class="calculator">
+        <tr>
+          <td colspan="4">
+            <input class="display-box" type="text" id="result" disabled />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="button" value="7" onclick="display('7')" />
+          </td>
+          <td>
+            <input type="button" value="8" onclick="display('8')" />
+          </td>
+          <td>
+            <input type="button" value="9" onclick="display('9')" />
+          </td>
+          <td>
+            <input type="button" value="+" onclick="display('+')" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="button" value="4" onclick="display('4')" />
+          </td>
+          <td>
+            <input type="button" value="5" onclick="display('5')" />
+          </td>
+          <td>
+            <input type="button" value="6" onclick="display('6')" />
+          </td>
+          <td>
+            <input type="button" value="-" onclick="display('-')" />
+          </td>
+        </tr>
+        <tr>
+          <!-- display() function displays the value of clicked button -->
+          <td>
+            <input type="button" value="1" onclick="display('1')" />
+          </td>
+          <td>
+            <input type="button" value="2" onclick="display('2')" />
+          </td>
+          <td>
+            <input type="button" value="3" onclick="display('3')" />
+          </td>
+          <td>
+            <input type="button" value="*" onclick="display('*')" />
+        </tr>
+        <tr>
+          <td>
+            <input type="button" value="0" onclick="display('0')" />
+          </td>
+          <td>
+            <input type="button" value="/" onclick="display('/')" />
+          </td>
+          <!-- clearScreen() function clears all the values -->
+          <td>
+            <input type="button" value="C" onclick="clearScreen()" id="clear" />
+          </td>
+          <!-- calculate() function evaluates the mathematical expression -->
+          <td>
+            <input type="button" value="=" onclick="calculate()" id="btn" />
+          </td>
+          </td>
+        </tr>
+      </table>
+      <div class="image-wrapper">
+        <img src="https://www.shutterstock.com/image-vector/vector-collection-web-development-shield-600w-1188713473.jpg" alt="html/css/js" />
+      </div>
+    </div>
+    <script type="text/javascript">
+      // This function clear all the values
+      function clearScreen() {
+        document.getElementById("result").value = "";
+      }
+      // This function display values
+      function display(value) {
+        document.getElementById("result").value += value;
+      }
+      // This function evaluates the expression and returns result
+      function calculate() {
+        var p = document.getElementById("result").value;
+        var q = eval(p);
+        document.getElementById("result").value = q;
+      }
+    </script>
+  </body>
+</html>

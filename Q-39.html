@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>String search with Exception Handling</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<style>
+			#error{
+				color: red;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>JavaScript String Methods demo</h1>
+		<h2>String includes() Method and exception handling demo</h2>
+		<p id="text"></p>
+		<p id="error"></p>
+		<p id="demo"></p>
+
+		<script>
+
+			let text="Sruthi $$ ";
+			document.getElementById("text").innerHTML = `Entered text is <strong>'${text}'</strong>`;
+
+			const Arr=[];
+
+			//Error handling to check if text var has a string $. If $ exists throw error 
+			 try {
+
+			 if(text.includes('$')) throw "Invalid character $";
+
+				} catch (error) {
+
+					document.getElementById("error").innerHTML = ("Error:"+ "  "+error);
+
+				}
+
+				finally{
+
+				document.getElementById("demo").innerHTML = ("Executed Successfully from finally block");
+
+				}
+		</script>
+
+		</body>
+</html>
