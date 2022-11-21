@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Employee Information System</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<style>
+		table{
+			border: 1px solid;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		table td,th{
+			border: 1px solid;
+			padding: 5px;
+		}
+
+		label{
+			width: 150px;
+			display: inline-block;
+			
+		}
+		form{
+			padding: 20px;
+			background-color: #4d954d;
+			color: #fff;
+		}
+		fieldset,.main,.search-text{
+			padding: 20px;
+			width: 60%;
+			margin: 0 auto;
+		}
+		fieldset div{
+			float: left;
+		}
+		.col-1{
+			width: 65%;
+		}
+
+		.col-2{
+			width: 28%;
+			border: 2px solid #ccc;
+			padding: .6rem .5rem 0 1.3rem;
+			
+		}
+		.col-2 button,.col-3 button{
+			display: block;
+			padding: .3rem;
+			width: 10rem;
+			margin-bottom: 1rem;
+			background-color: #d3d3d3;
+			border: none;
+			font-size: .7rem;
+			cursor: pointer;
+		}
+
+		.col-2 button{
+			text-transform: uppercase;
+		}
+
+		.col-2 button::first-letter{
+		text-decoration: underline;
+		}
+
+		.col-3 {
+			clear: both;
+			border: 2px solid #ccc;
+			margin-top: 1rem;
+			padding: 0 10px;
+		}
+
+		.col-3 button{
+			display: inline-block;
+			margin-right: 0;
+			margin-top: 10px;
+		}
+		
+		.search-text {
+			background-color: brown;
+			border: 10px outset beige;
+			width: 56%;
+		}
+
+		</style>
+		</head>
+	<body>
+		<form>
+		 
+		  <fieldset>
+		  <legend>Employee's Information System Version 1.0</legend>
+		  <div class="col-1">
+			<label for="enumber">Employee Number:</label>
+			<input type="text" id="enumber" name="enumber"><br><br>
+			<label for="ename">Employee name:</label>
+			<input type="text" id="ename" name="ename"><br><br>
+			<label for="city">City Address:</label>
+			<input type="text" id="city" name="city"><br><br>
+			<label for="dob">Date of Birth:</label>
+			<input type="date" id="dob" name="dob"><br><br>
+
+			<label for="tel">Telephone Number:</label>
+			<input type="text" id="tel" name="tel"><br><br>
+			<label for="dept">Department:</label>
+			<input type="dept" id="dept" name="dept"><br><br>
+			
+		  </div>
+		  
+		  <div class="col-2">
+			<button id="add" onclick="addEmployee()"> Add </button>
+			<button id="view" onclick="displayEmployees()">View</button>
+			<button id="delete" onclick="delEmployee(id)"> Delete </button>
+			<button id="update" onclick="updateEmployee(id)"> Update </button>
+			<button id="search" onclick="searchEmployee(id)"> Search </button>
+			
+		  </div>
+		  
+		  <div class="col-3">
+			<button id="moveFirst" onclick="getFirst()">Move First</button>
+			<!-- <button id="moveNext">Move Next</button>
+			<button id="movePrevious">Move Previous</button> -->
+			<button id="moveLast" onclick="getLast()">Move Last</button>
+		  
+		  </div>
+		  
+		  </fieldset>
+		  
+		  <div class="main">
+
+		</div>
+		
+		<div class="search-text"></div>
+		 
+		</form>
+
+
+		<script>
+
+		var employees =[];
+		var record = "";
+		var id = document.getElementById('enumber').value;
+
+		/* Adding employee object to employees array*/
+		function addEmployee(){
+			event.preventDefault();
+			document.querySelector(".search-text").innerHTML = "";
+			record = "";
+			var employee = {};
+			var enumber = document.getElementById('enumber').value;
+			var ename = document.getElementById('ename').value;
+			var city = document.getElementById('city').value;
+			var dob = document.getElementById('dob').value;
+			var tel = document.getElementById('tel').value;
+			var dept = document.getElementById('dept').value;
+
+			employee.id = enumber;
+			employee.name = ename;
+			employee.city = city;
+			employee.dob = dob;
+			employee.tel = tel;
+			employee.dept = dept;
+			
+			if(employee.id != "")			
+			employees.push(employee);
+			
+			else
+			document.querySelector(".search-text").innerHTML = "RECORDS CANNOT TAKE NULL VALUES FOR EMPLOYEE !!!"
+			
+			console.log("employee :"+employee);
+
+			console.log(employees);
+			document.querySelector(".main").innerHTML = displayEmployees();
+			return employees;
+		}
+
+		/* View Employees data in a tabular format */
+		function displayEmployees(){
+			event.preventDefault();
+			
+			record = "";
+			record += `<table>
+				<thead>
+					<th>Employee ID</th>
+					<th>Employee Name</th>
+					<th>City Address</th>
+					<th>Date of Birth</th>			
+					<th>Telephone Number</th>
+					<th>Department</th>
+				</thead>
+				<tbody>`;
+					employees.forEach(ele =>{
+						record += 	`<tr>
+								<td>${ele.id}</td>
+								<td>${ele.name}</td>
+								<td>${ele.city}</td>
+								<td>${ele.dob}</td>
+								<td>${ele.tel}</td>
+								<td>${ele.dept}</td>
+							</tr>`
+						});
+						
+		  
+		  record += `</tbody>
+			</table>`;
+			return record;
+		  
+		}
+
+		/*Delete last employee record*/
+
+		 let delEmployee = (id) => {
+			var id = document.getElementById('enumber').value;
+			event.preventDefault();
+			record = ""; 
+			//employees.pop();
+			document.querySelector(".search-text").innerHTML = "";
+			
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			
+			console.log("upd_obj_index:  "+upd_obj_index);
+			if(upd_obj_index != -1 ){
+				employees.splice(upd_obj_index,1);
+				document.querySelector(".main").innerHTML = displayEmployees();
+			}
+			else
+			document.querySelector(".search-text").innerHTML = "NO SUCH RECORD FOUND TO DELETE :(";
+
+		 } 
+
+		/* Update Employee record by ID*/
+
+		let updateEmployee = (id) =>{
+			var id = document.getElementById('enumber').value;
+			console.log("id: "+id);
+			event.preventDefault();
+			record = ""; 
+			console.log("employees:  "+employees);
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			console.log("upd_obj_index:  "+upd_obj_index);
+			document.querySelector(".search-text").innerHTML = "";
+			if(upd_obj_index !== -1 ){
+				employees[upd_obj_index].name = document.getElementById('ename').value;
+				employees[upd_obj_index].city = document.getElementById('city').value;
+				employees[upd_obj_index].dob = document.getElementById('dob').value;
+				employees[upd_obj_index].tel = document.getElementById('tel').value;
+				employees[upd_obj_index].dept = document.getElementById('dept').value;
+				employees.splice(upd_obj_index,1,employees[upd_obj_index]);
+				document.querySelector(".main").innerHTML = displayEmployees();	
+				
+			}
+			else{
+				document.querySelector(".search-text").innerHTML = "NO RECORD FOUND TO UPDATE :( ";
+				
+			}
+			
+	}
+		
+		
+		/*Search employee by ID*/
+		let searchEmployee = (id) =>{
+			event.preventDefault();
+			var id = document.getElementById('enumber').value;
+			console.log("id: "+id);
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			console.log("searched index: "+upd_obj_index);
+			if(upd_obj_index !== -1 ){
+				console.log("searched name: "+employees[upd_obj_index].name);
+				document.querySelector(".search-text").innerHTML = "YOUR SEARCHED RECORD IS : "+employees[upd_obj_index].id+"  "+employees[upd_obj_index].name+"  "+employees[upd_obj_index].city+"  "+employees[upd_obj_index].dob+"  "+employees[upd_obj_index].tel+"  "+employees[upd_obj_index].dept;
+			}
+			else{
+				document.querySelector(".search-text").innerHTML = "NO RECORD FOUND";
+			}
+			
+		}
+		
+		//move to first employee record
+		
+		function getFirst(){
+			event.preventDefault();
+			document.querySelector(".search-text").innerHTML = "";
+			if(employees.length > 0){
+
+				document.querySelector(".search-text").innerHTML = "FIRST RECORD IS: "+employees[0].id+"  "+employees[0].name+"  "+employees[0].city+"  "+employees[0].dob+"  "+employees[0].tel+"  "+employees[0].dept;
+			}
+			else
+				document.querySelector(".search-text").innerHTML = "EMPLOYEES RECORDS ARE EMPTY!! PlEASE ADD NEW RECORDS TO GET FIRST RECORD "
+		}
+		
+		//move to last employee record
+		function getLast(){
+			event.preventDefault();
+			document.querySelector(".search-text").innerHTML = "";
+			var lastIndex = employees.length - 1;
+			if(employees.length > 0)
+				document.querySelector(".search-text").innerHTML = "LAST RECORD IS: "+employees[lastIndex].id+"  "+employees[lastIndex].name+"  "+employees[lastIndex].city+"  "+employees[lastIndex].dob+"  "+employees[lastIndex].tel+"  "+employees[lastIndex].dept;
+			else
+				document.querySelector(".search-text").innerHTML = "EMPLOYEES RECORDS ARE EMPTY!! PlEASE ADD NEW RECORDS TO GET LAST RECORD "
+		}
+		
+	</script>
+	</body>
+</html>
