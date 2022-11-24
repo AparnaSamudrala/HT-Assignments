@@ -6,6 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<style>
+		body{
+			background-color: #4d954d;
+		}
 		table{
 			border: 1px solid;
 			border-collapse: collapse;
@@ -24,7 +27,7 @@
 		}
 		form{
 			padding: 20px;
-			background-color: #4d954d;
+			
 			color: #fff;
 		}
 		fieldset,.main,.search-text{
@@ -118,8 +121,8 @@
 		  
 		  <div class="col-3">
 			<button id="moveFirst" onclick="getFirst()">Move First</button>
-			<!-- <button id="moveNext">Move Next</button>
-			<button id="movePrevious">Move Previous</button> -->
+			<button id="moveNext" onclick="getNext()">Move Next</button>
+			<button id="movePrevious" onclick="getPrev()">Move Previous</button>
 			<button id="moveLast" onclick="getLast()">Move Last</button>
 		  
 		  </div>
@@ -130,7 +133,7 @@
 
 		</div>
 		
-		<div class="search-text"></div>
+		<div class="search-text">Placeholder for search result and messages for error handling!!</div>
 		 
 		</form>
 
@@ -277,25 +280,100 @@
 		//move to first employee record
 		
 		function getFirst(){
+			var id = document.getElementById('enumber').value;
+			console.log("id: "+id);
 			event.preventDefault();
-			document.querySelector(".search-text").innerHTML = "";
-			if(employees.length > 0){
-
-				document.querySelector(".search-text").innerHTML = "FIRST RECORD IS: "+employees[0].id+"  "+employees[0].name+"  "+employees[0].city+"  "+employees[0].dob+"  "+employees[0].tel+"  "+employees[0].dept;
+			record = ""; 
+			console.log("employees:  "+employees);
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			console.log("upd_obj_index:  "+upd_obj_index);
+			if(upd_obj_index !== -1 ){
+				document.querySelector(".search-text").innerHTML = "";
+				var x = employees.splice(upd_obj_index,1);
+				console.log(x);
+			    employees.unshift(x[0]);
+				//console.log(x[0].id);
+				document.querySelector(".main").innerHTML = displayEmployees();
 			}
-			else
-				document.querySelector(".search-text").innerHTML = "EMPLOYEES RECORDS ARE EMPTY!! PlEASE ADD NEW RECORDS TO GET FIRST RECORD "
+			else{
+				document.querySelector(".search-text").innerHTML = "Cannot perform  move first operation";
+			}
+			
+				
+			
 		}
-		
+	
 		//move to last employee record
 		function getLast(){
+			var id = document.getElementById('enumber').value;
+			console.log("id: "+id);
 			event.preventDefault();
+			record = ""; 
+			console.log("employees:  "+employees);
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			console.log("upd_obj_index:  "+upd_obj_index);
+			if(upd_obj_index !== -1 ){
+				document.querySelector(".search-text").innerHTML = "";
+				var x = employees.splice(upd_obj_index,1);
+				console.log(x);
+				employees.push(x[0]);
+				//console.log(x[0].id);
+				document.querySelector(".main").innerHTML = displayEmployees();	
+			}
+			else{
+				document.querySelector(".search-text").innerHTML = "Cannot perform  move last operation";
+			}
+		}
+		
+		//move to prev employee record
+		function getPrev(){
+			var id = document.getElementById('enumber').value;
+			console.log("id: "+id);
+			event.preventDefault();
+			record = ""; 
+			console.log("employees:  "+employees);
 			document.querySelector(".search-text").innerHTML = "";
-			var lastIndex = employees.length - 1;
-			if(employees.length > 0)
-				document.querySelector(".search-text").innerHTML = "LAST RECORD IS: "+employees[lastIndex].id+"  "+employees[lastIndex].name+"  "+employees[lastIndex].city+"  "+employees[lastIndex].dob+"  "+employees[lastIndex].tel+"  "+employees[lastIndex].dept;
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			console.log("upd_obj_index:  "+upd_obj_index);
+			
+			if(upd_obj_index == -1){
+				document.querySelector(".search-text").innerHTML = "Cannot perform  move previous operation";
+			}
+			
+			else if(upd_obj_index != 0){
+				let x = employees[upd_obj_index - 1];
+				employees[upd_obj_index - 1] = employees[upd_obj_index];
+				employees[upd_obj_index] = x;
+				document.querySelector(".main").innerHTML = displayEmployees();	
+			}
 			else
-				document.querySelector(".search-text").innerHTML = "EMPLOYEES RECORDS ARE EMPTY!! PlEASE ADD NEW RECORDS TO GET LAST RECORD "
+				document.querySelector(".search-text").innerHTML = "Cannot perform  move previous operation";
+			
+		}
+		
+		function getNext(){
+		var id = document.getElementById('enumber').value;
+			console.log("id: "+id);
+			event.preventDefault();
+			record = ""; 
+			document.querySelector(".search-text").innerHTML = "";
+			console.log("employees:  "+employees);
+			upd_obj_index = employees.findIndex((obj => obj.id == id));
+			console.log("upd_obj_index:  "+upd_obj_index);
+			
+			if(upd_obj_index == -1){
+				document.querySelector(".search-text").innerHTML = "Cannot perform  move next operation";
+			}
+			else if(upd_obj_index < employees.length - 1){
+				let x = employees[upd_obj_index + 1];
+				employees[upd_obj_index + 1] = employees[upd_obj_index];
+				employees[upd_obj_index] = x;
+				document.querySelector(".main").innerHTML = displayEmployees();
+			}
+			else
+				document.querySelector(".search-text").innerHTML = "Cannot perform  move next operation";						
+						
+			
 		}
 		
 	</script>
